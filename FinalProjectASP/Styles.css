@@ -64,3 +64,34 @@ h4 {
     font-weight: 700;
     color: darkgreen;
 }
+.button1 {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: mediumblue;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+    .button1:hover {
+        background-color: #3e8e41
+    }
+
+    .button1:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+.pic {
+    text-align: center; /* Выравнивания картинки по центру в html */
+    position: center;
+    border-radius: 10px;
+    border: 5px #ccc solid;
+    box-shadow: 0 0 10px #444;
+}

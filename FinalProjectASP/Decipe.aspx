@@ -52,9 +52,9 @@
          <br>
     <asp:Button ID="DecipeFinal" runat="server" Text="Расшифровать" CssClass="button" Height="53px" Width="154px" OnClick="Deciper_Click"/>
     <br><br><br>
-    <asp:TextBox ID="DecipeText" runat="server" Width="100%" Height="200px" TextMode="MultiLine"></asp:TextBox>
+    <asp:TextBox ID="DecipeText" runat="server" Width="100%" Height="200px" TextMode="MultiLine">Здесь будет выведено расшифрованное сообщение</asp:TextBox>
     <br><br>
-    <asp:Button ID="SaveTXT" runat="server" Text="Сохранить txt" />&nbsp;&nbsp;&nbsp;<asp:Button ID="SaveDOCX" runat="server" Text="Сохранить docx" />
+    <asp:Button ID="SaveTXT" runat="server" Text="Сохранить txt" CssClass="button1" OnClick="SaveTXT_Click" Visible="false" Enabled="false" />&nbsp;&nbsp;&nbsp;<asp:Button ID="SaveDOCX" runat="server" Text="Сохранить docx" CssClass="button1" Visible="false" Enabled="false" OnClick="SaveDOCX_Click"/>
     </form>
     
     

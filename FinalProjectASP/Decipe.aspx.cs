@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Word = Microsoft.Office.Interop.Word;
+using Xceed.Words.NET;
 namespace FinalProjectASP
 {
     
@@ -18,8 +20,8 @@ namespace FinalProjectASP
         
             protected void Page_Load(object sender, EventArgs e)
         {
+
             
-           
             
         }
 
@@ -65,7 +67,7 @@ namespace FinalProjectASP
                         if (extension == ".docx") source = ParseWord(path + FileUpload.FileName);
                         else
                         {
-                            source = File.ReadAllText(path + FileUpload.FileName);
+                            source = File.ReadAllText(path + FileUpload.FileName, Encoding.UTF8);
                         }
                         if (string.IsNullOrEmpty(source))
                         {
@@ -113,12 +115,12 @@ namespace FinalProjectASP
                         KeyError.Text = "";
                         string path = Server.MapPath("Deciper\\");
                         if (File.Exists(path + KeyUpload.FileName)) File.Delete(path + KeyUpload.FileName);
-                        FileUpload.SaveAs(path + KeyUpload.FileName);
+                        KeyUpload.SaveAs(path + KeyUpload.FileName);
 
                         if (extension == ".docx") keytext = ParseWord(path + KeyUpload.FileName);
                         else
                         {
-                            keytext = File.ReadAllText(path + KeyUpload.FileName);
+                            keytext = File.ReadAllText(path + KeyUpload.FileName, Encoding.UTF8);
                         }
                         if (string.IsNullOrEmpty(source))
                         {
@@ -128,6 +130,7 @@ namespace FinalProjectASP
                         {
                             data.Key = keytext;
                             HasKey = true;
+                           
                         }
                         if (File.Exists(path + KeyUpload.FileName)) File.Delete(path + KeyUpload.FileName);
                     }
@@ -144,7 +147,12 @@ namespace FinalProjectASP
 
             if (Text && HasKey)
             {
-                DecipeText.Text = Crypto.Decrypt(source, keytext);
+                data.DeciperData= Crypto.Decrypt(source, keytext);
+                DecipeText.Text = data.DeciperData;
+                SaveDOCX.Visible = true;
+                SaveDOCX.Enabled = true;
+                SaveTXT.Enabled = true;
+                SaveTXT.Visible = true;
             }
             
         }
@@ -237,6 +245,52 @@ namespace FinalProjectASP
                     app = null;
                 }
                 
+            }
+        }
+
+        protected void SaveTXT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (data.DeciperData != default && data.EnciperData != default && data.Key != default)
+                {
+                    string path = Server.MapPath("Deciper\\Program\\");
+                    File.WriteAllText(path+"AppData.txt", data.DeciperData, Encoding.UTF8);
+                    Response.Redirect(@"/Deciper/Program/" + "AppData.txt");
+                }
+            }
+            finally
+            {
+
+            }
+        }
+
+        protected void SaveDOCX_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists(Server.MapPath("Deciper\\Program\\") + "AppDataDocx.docx")) File.Delete(Server.MapPath("Deciper\\Program\\") + "AppDataDocx.docx");
+                string pathDocument = Server.MapPath("Deciper\\Program\\") + "AppDataDocx.docx";
+
+                // создаём документ
+                DocX document = DocX.Create(pathDocument);
+
+                
+
+                // вставляем параграф и передаём текст
+                document.InsertParagraph(data.DeciperData).
+                         // устанавливаем шрифт
+                         Font("Calibri").
+                         // устанавливаем размер шрифта
+                         FontSize(36);
+
+                // сохраняем документ
+                document.Save();
+                Response.Redirect(@"/Deciper/Program/" + "AppDataDocx.docx");
+            }
+            finally
+            {
+
             }
         }
     }
