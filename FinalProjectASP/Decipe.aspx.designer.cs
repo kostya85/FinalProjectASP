@@ -33,15 +33,6 @@ namespace FinalProjectASP
         protected global::System.Web.UI.WebControls.RadioButtonList DeciperFileMode;
 
         /// <summary>
-        /// FileChooser элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button FileChooser;
-
-        /// <summary>
         /// SourceText элемент управления.
         /// </summary>
         /// <remarks>
@@ -78,15 +69,6 @@ namespace FinalProjectASP
         protected global::System.Web.UI.WebControls.RadioButtonList DeciperKeyMode;
 
         /// <summary>
-        /// KeyChooser элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button KeyChooser;
-
-        /// <summary>
         /// Key элемент управления.
         /// </summary>
         /// <remarks>
@@ -105,13 +87,22 @@ namespace FinalProjectASP
         protected global::System.Web.UI.WebControls.FileUpload KeyUpload;
 
         /// <summary>
-        /// Button2 элемент управления.
+        /// KeyError элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Label KeyError;
+
+        /// <summary>
+        /// DecipeFinal элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DecipeFinal;
 
         /// <summary>
         /// DecipeText элемент управления.

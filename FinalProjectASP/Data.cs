@@ -9,5 +9,6 @@ namespace FinalProjectASP
     {
         public string DeciperData { get; set; }
         public string EnciperData { get; set; }
+        public string Key { get; set; }
     }
 }

@@ -7,69 +7,63 @@ namespace FinalProjectASP
 {
     public static class Crypto
     {
-        static char[] characters = new char[] { 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И',
-                                                'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С',
-                                                'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ы', 'Ъ',
-                                                'Э', 'Ю', 'Я'};
-        static int N = characters.Length;
-        public static string Deciper(string input, string keyword)
+        static string letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+        //генерация повторяющегося пароля
+        public static string GetRepeatKey(string s, string str)
         {
-            //input = input.ToUpper();
-            keyword = keyword.ToUpper();
-            bool isLower = true;
-            string result = "";
-
-            int keyword_index = 0;
-
-            foreach (char symbol in input)
+            int i = 0;
+            s = s.ToUpper();
+            str = str.ToUpper();
+            string res = "";
+            foreach (var e in str)
             {
-                if (char.IsLower(symbol)) isLower = true;
-                else isLower = false;
-                if (!characters.Contains(char.ToUpper(symbol))) { result += symbol; continue; }
-                int p = (Array.IndexOf(characters, char.ToUpper(symbol)) + N -
-                    Array.IndexOf(characters, keyword[keyword_index])) % N;
-                if(isLower) result += char.ToLower(characters[p]);
-                else result += char.ToUpper(characters[p]);
+                if (letters.Contains(e))
+                {
+                    res += s[i];
+                    if (i + 1 == s.Length) i = 0;
+                    else i++;
+                }
+                else
+                {
+                    res += e;
+                }
+            }
+            return res;
+        }
 
+        public static string Vigenere(string text, string password, bool encrypting = true)
+        {
+            var gamma = GetRepeatKey(password, text);
+            gamma = gamma.ToUpper();
+            text = text.ToUpper();
+            var retValue = "";
+            var q = letters.Length;
 
-                keyword_index++;
-
-                if ((keyword_index + 1) == keyword.Length)
-                    keyword_index = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                var letterIndex = letters.IndexOf(text[i]);
+                var codeIndex = letters.IndexOf(gamma[i]);
+                if (letterIndex < 0)
+                {
+                    //если буква не найдена, добавляем её в исходном виде
+                    retValue += text[i].ToString();
+                }
+                else
+                {
+                    retValue += letters[(q+ letterIndex + ((encrypting ? 1 : -1) * codeIndex)) % q].ToString();
+                }
             }
 
-            return result;
-            
+            return retValue;
         }
-        public static string Enciper(string input, string keyword)
-        {
-            bool isLower = true;
-           // input = input.ToUpper();
-            keyword = keyword.ToUpper();
 
-            string result = "";
+        //шифрование текста
+        public static string Encrypt(string plainMessage, string password)
+            => Vigenere(plainMessage, password);
 
-            int keyword_index = 0;
+        //дешифрование текста
+        public static string Decrypt(string encryptedMessage, string password)
+            => Vigenere(encryptedMessage, password, false);
 
-            foreach (char symbol in input)
-            {
-                if (char.IsLower(symbol)) isLower = true;
-                else isLower = false;
-                if (!characters.Contains(char.ToUpper(symbol))) { result += symbol; continue; }
-                int c = (Array.IndexOf(characters, char.ToUpper(symbol)) +
-                    Array.IndexOf(characters, keyword[keyword_index])) % N;
-
-                if (isLower) result += char.ToLower(characters[c]);
-                else result += char.ToUpper(characters[c]);
-
-                keyword_index++;
-
-                if ((keyword_index + 1) == keyword.Length)
-                    keyword_index = 0;
-            }
-
-            return result;
-            
-        }
     }
 }

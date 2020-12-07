@@ -15,13 +15,13 @@
     <h3>Пожалуйста, введите недостающие данные</h3>
     <form id="form1" runat="server">
         <div>
-
+            <h4>Шаг 1 - Исходный текст</h4>
              <asp:RadioButtonList ID="DeciperFileMode" runat="server" 
             RepeatDirection="Horizontal" RepeatLayout="Table">
             <asp:ListItem Text="Введу исходный текст сам" Value="Input" Selected="True"></asp:ListItem>
                 
             <asp:ListItem Text="Выберу файл для загрузки" Value="Download"></asp:ListItem>            
-        </asp:RadioButtonList>   <asp:Button ID="FileChooser" runat="server" Text="Выбрать способ" OnClick="FileChooser_Click" CssClass="button" Height="39px" Width="100px" />
+        </asp:RadioButtonList>   
             <br>
             <br>
             <asp:TextBox ID="SourceText" runat="server" Height="200px" Width="100%" TextMode="MultiLine">Введите исходный текст</asp:TextBox>
@@ -29,17 +29,17 @@
             <br>
             <asp:FileUpload ID="FileUpload" runat="server"/>&nbsp;&nbsp;&nbsp;<br>
             <asp:Label ID="FileError" runat="server" Text=""></asp:Label>
-
+            <br><br>
         </div>
         <hr>
         <div>
-
+            <h4>Шаг 2 - выбор ключа</h4>
             <asp:RadioButtonList ID="DeciperKeyMode" runat="server" 
             RepeatDirection="Horizontal" RepeatLayout="Table">
             <asp:ListItem Text="Введу ключ сам" Value="Input" Selected="True"></asp:ListItem>
                 
             <asp:ListItem Text="Выберу файл для загрузки" Value="Download"></asp:ListItem>            
-        </asp:RadioButtonList>   <asp:Button ID="KeyChooser" runat="server" Text="Выбрать способ" OnClick="KeyChooser_Click" CssClass="button" Height="39px" Width="100px" />
+        </asp:RadioButtonList>   
             <br>
             <br>
             
@@ -47,10 +47,10 @@
             <br>
             <br>
             <asp:FileUpload ID="KeyUpload" runat="server"/>&nbsp;&nbsp;&nbsp;<br>
-
+            <asp:Label ID="KeyError" runat="server" Text=""></asp:Label>
         </div>
          <br>
-    <asp:Button ID="Button2" runat="server" Text="Расшифровать" CssClass="button" Height="53px" Width="154px"/>
+    <asp:Button ID="DecipeFinal" runat="server" Text="Расшифровать" CssClass="button" Height="53px" Width="154px" OnClick="Deciper_Click"/>
     <br><br><br>
     <asp:TextBox ID="DecipeText" runat="server" Width="100%" Height="200px" TextMode="MultiLine"></asp:TextBox>
     <br><br>

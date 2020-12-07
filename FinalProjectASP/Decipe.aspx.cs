@@ -12,105 +12,141 @@ namespace FinalProjectASP
     
     public partial class Decipe : System.Web.UI.Page
     {
-        static bool FileVar;
-        static bool KeyVar;
+       
+        
         static Data data = new Data();
         
             protected void Page_Load(object sender, EventArgs e)
         {
-            FileVar = true;
-            KeyVar = true;
             
-            SourceText.ReadOnly = false;
-            FileUpload.Enabled = false;
-            DecipeText.Visible = false;
-            SaveTXT.Enabled = false;
-            SaveDOCX.Enabled = false;
-            SaveTXT.Visible = false;
-            SaveDOCX.Visible = false;
-            KeyUpload.Enabled = false;
-            Key.ReadOnly = false;
+           
             
-            SourceText.Text = "Введите исходный текст";
-            Key.Text = "Введите ключ";
         }
 
         
 
        
 
-        protected void FileChooser_Click(object sender, EventArgs e)
+       
+        
+
+        protected void Deciper_Click(object sender, EventArgs e)
         {
+            bool Text = false;
+            bool HasKey = false;
+            string source = null;
+            string keytext = null;
             if (DeciperFileMode.SelectedValue == "Input")
             {
-                SourceText.Text = "Введите исходный текст";
-                
-                SourceText.ReadOnly = false;
-                FileUpload.Enabled = false;
-                FileVar = true;
-            }
-            else
-            {
-                SourceText.Text = "Недоступно!";
-                
-                SourceText.ReadOnly = true;
-                FileUpload.Enabled = true;
-                FileVar = false;
-            }
-        }
-
-        protected void KeyChooser_Click(object sender, EventArgs e)
-        {
-            if (DeciperKeyMode.SelectedValue == "Input")
-            {
-                Key.Text = "Введите ключ";
-                KeyUpload.Enabled = false;
-                
-                Key.ReadOnly = false;
-                
-                KeyVar = true;
-            }
-            else
-            {
-                Key.Text = "Недоступно!";
-                
-                Key.ReadOnly = true;
-                KeyUpload.Enabled = true;
-                KeyVar = false;
-            }
-        }
-
-        protected void Download_Click(object sender, EventArgs e)
-        {
-            if (FileUpload.HasFile)
-            {
-                string extension = System.IO.Path.GetExtension(FileUpload.FileName);
-                if (extension == ".txt" || extension == ".docx")
+                source = SourceText.Text;
+                if (!string.IsNullOrEmpty(source))
                 {
-                    FileError.Text = "";
-                    string path = Server.MapPath("Deciper\\");
-                    if (File.Exists(path + FileUpload.FileName)) File.Delete(path + FileUpload.FileName);
-                    FileUpload.SaveAs(path+FileUpload.FileName);
-                    string source = ParseWord(path + FileUpload.FileName);
-                    if (string.IsNullOrEmpty(source))
+                    data.EnciperData = source;
+                    Text = true;
+                }
+                else
+                {
+                    FileError.Text = "Вы не ввели текст!";
+                }
+
+            }
+            else
+            {
+                if (FileUpload.HasFile)
+                {
+                    string extension = System.IO.Path.GetExtension(FileUpload.FileName);
+                    if (extension == ".txt" || extension == ".docx")
                     {
-                        FileError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
+                        FileError.Text = "";
+                        string path = Server.MapPath("Deciper\\");
+                        if (File.Exists(path + FileUpload.FileName)) File.Delete(path + FileUpload.FileName);
+                        FileUpload.SaveAs(path + FileUpload.FileName);
+                        
+                        if (extension == ".docx") source = ParseWord(path + FileUpload.FileName);
+                        else
+                        {
+                            source = File.ReadAllText(path + FileUpload.FileName);
+                        }
+                        if (string.IsNullOrEmpty(source))
+                        {
+                            FileError.Text = "Длина выбранного файла = 0!";
+                        }
+                        else
+                        {
+                            data.EnciperData = source;
+                            Text = true;
+                        }
+                        if (File.Exists(path + FileUpload.FileName)) File.Delete(path + FileUpload.FileName);
                     }
                     else
                     {
-                        data.EnciperData = source;
+                        FileError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
                     }
-                    if(File.Exists(path + FileUpload.FileName)) File.Delete(path + FileUpload.FileName);
                 }
                 else
                 {
                     FileError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
                 }
             }
+
+            if (DeciperKeyMode.SelectedValue == "Input")
+            {
+                keytext = Key.Text;
+                if (!string.IsNullOrEmpty(keytext))
+                {
+                    data.Key = keytext;
+                    HasKey = true;
+                }
+                else
+                {
+                    KeyError.Text = "Вы не ввели текст!";
+                }
+
+            }
             else
             {
-                FileError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
+                if (KeyUpload.HasFile)
+                {
+                    string extension = System.IO.Path.GetExtension(KeyUpload.FileName);
+                    if (extension == ".txt" || extension == ".docx")
+                    {
+                        KeyError.Text = "";
+                        string path = Server.MapPath("Deciper\\");
+                        if (File.Exists(path + KeyUpload.FileName)) File.Delete(path + KeyUpload.FileName);
+                        FileUpload.SaveAs(path + KeyUpload.FileName);
+
+                        if (extension == ".docx") keytext = ParseWord(path + KeyUpload.FileName);
+                        else
+                        {
+                            keytext = File.ReadAllText(path + KeyUpload.FileName);
+                        }
+                        if (string.IsNullOrEmpty(source))
+                        {
+                            KeyError.Text = "Длина выбранного файла = 0!";
+                        }
+                        else
+                        {
+                            data.Key = keytext;
+                            HasKey = true;
+                        }
+                        if (File.Exists(path + KeyUpload.FileName)) File.Delete(path + KeyUpload.FileName);
+                    }
+                    else
+                    {
+                        KeyError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
+                    }
+                }
+                else
+                {
+                    KeyError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
+                }
             }
+
+            if (Text && HasKey)
+            {
+                DecipeText.Text = Crypto.Decrypt(source, keytext);
+            }
+            
         }
         string ParseWord(string path)
         {

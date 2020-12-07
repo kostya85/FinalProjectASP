@@ -59,3 +59,8 @@ h2 {
     line-height: 40px;
     font-family: 'Orienta', sans-serif;
 }
+h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: darkgreen;
+}
