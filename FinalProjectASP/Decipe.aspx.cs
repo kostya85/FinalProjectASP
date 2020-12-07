@@ -14,12 +14,13 @@ namespace FinalProjectASP
     {
         static bool FileVar;
         static bool KeyVar;
-        static Data data;
+        static Data data = new Data();
+        
             protected void Page_Load(object sender, EventArgs e)
         {
             FileVar = true;
             KeyVar = true;
-            Download.Enabled = false;
+            
             SourceText.ReadOnly = false;
             FileUpload.Enabled = false;
             DecipeText.Visible = false;
@@ -29,9 +30,7 @@ namespace FinalProjectASP
             SaveDOCX.Visible = false;
             KeyUpload.Enabled = false;
             Key.ReadOnly = false;
-            DownloadKey.Enabled = false;
-            Download.Text = "Недоступно!";
-            DownloadKey.Text = "Недоступно!";
+            
             SourceText.Text = "Введите исходный текст";
             Key.Text = "Введите ключ";
         }
@@ -45,8 +44,7 @@ namespace FinalProjectASP
             if (DeciperFileMode.SelectedValue == "Input")
             {
                 SourceText.Text = "Введите исходный текст";
-                Download.Enabled = false;
-                Download.Text = "Недоступно!";
+                
                 SourceText.ReadOnly = false;
                 FileUpload.Enabled = false;
                 FileVar = true;
@@ -54,8 +52,7 @@ namespace FinalProjectASP
             else
             {
                 SourceText.Text = "Недоступно!";
-                Download.Enabled = true;
-                Download.Text = "Загрузить файл";
+                
                 SourceText.ReadOnly = true;
                 FileUpload.Enabled = true;
                 FileVar = false;
@@ -68,16 +65,15 @@ namespace FinalProjectASP
             {
                 Key.Text = "Введите ключ";
                 KeyUpload.Enabled = false;
-                DownloadKey.Text = "Недоступно!";
+                
                 Key.ReadOnly = false;
-                DownloadKey.Enabled = false;
+                
                 KeyVar = true;
             }
             else
             {
                 Key.Text = "Недоступно!";
-                DownloadKey.Enabled = true;
-                DownloadKey.Text = "Загрузить файл";
+                
                 Key.ReadOnly = true;
                 KeyUpload.Enabled = true;
                 KeyVar = false;
@@ -95,8 +91,16 @@ namespace FinalProjectASP
                     string path = Server.MapPath("Deciper\\");
                     if (File.Exists(path + FileUpload.FileName)) File.Delete(path + FileUpload.FileName);
                     FileUpload.SaveAs(path+FileUpload.FileName);
-                    ParseWord(path + FileUpload.FileName);
-                    data = new Data();
+                    string source = ParseWord(path + FileUpload.FileName);
+                    if (string.IsNullOrEmpty(source))
+                    {
+                        FileError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
+                    }
+                    else
+                    {
+                        data.EnciperData = source;
+                    }
+                    if(File.Exists(path + FileUpload.FileName)) File.Delete(path + FileUpload.FileName);
                 }
                 else
                 {
@@ -108,7 +112,7 @@ namespace FinalProjectASP
                 FileError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
             }
         }
-        void ParseWord(string path)
+        string ParseWord(string path)
         {
             object FileName = path;
             object rOnly = true;
@@ -134,10 +138,9 @@ namespace FinalProjectASP
                 if (MainText != null)
                 {
                     /* Обработка основного текста документа*/
-                    DecipeText.Visible = true;
-                    DecipeText.Text = MainText;
+                    return MainText;
                 }
-
+                return null;
                 // Получение текста из нижних и верхних колонтитулов
                 //foreach (Word.Section section in doc.Sections)
                 //{
@@ -177,6 +180,7 @@ namespace FinalProjectASP
             catch (Exception ex)
             {
                 /* Обработка исключений */
+                return null;
             }
             finally
             {
@@ -196,6 +200,7 @@ namespace FinalProjectASP
                     Marshal.ReleaseComObject(app);
                     app = null;
                 }
+                
             }
         }
     }

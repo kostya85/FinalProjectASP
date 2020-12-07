@@ -21,14 +21,13 @@
             <asp:ListItem Text="Введу исходный текст сам" Value="Input" Selected="True"></asp:ListItem>
                 
             <asp:ListItem Text="Выберу файл для загрузки" Value="Download"></asp:ListItem>            
-        </asp:RadioButtonList>   <asp:Button ID="FileChooser" runat="server" Text="Готово!" OnClick="FileChooser_Click" CssClass="button" Height="39px" Width="100px" />
+        </asp:RadioButtonList>   <asp:Button ID="FileChooser" runat="server" Text="Выбрать способ" OnClick="FileChooser_Click" CssClass="button" Height="39px" Width="100px" />
             <br>
             <br>
             <asp:TextBox ID="SourceText" runat="server" Height="200px" Width="100%" TextMode="MultiLine">Введите исходный текст</asp:TextBox>
             <br>
             <br>
-            <asp:FileUpload ID="FileUpload" runat="server"/>&nbsp;&nbsp;&nbsp;<asp:Button ID="Download" runat="server" Text="Загрузить файл" CssClass="button" Height="54px" OnClick="Download_Click"/>
-            <br>
+            <asp:FileUpload ID="FileUpload" runat="server"/>&nbsp;&nbsp;&nbsp;<br>
             <asp:Label ID="FileError" runat="server" Text=""></asp:Label>
 
         </div>
@@ -40,15 +39,14 @@
             <asp:ListItem Text="Введу ключ сам" Value="Input" Selected="True"></asp:ListItem>
                 
             <asp:ListItem Text="Выберу файл для загрузки" Value="Download"></asp:ListItem>            
-        </asp:RadioButtonList>   <asp:Button ID="KeyChooser" runat="server" Text="Готово!" OnClick="KeyChooser_Click" CssClass="button" Height="39px" Width="100px" />
+        </asp:RadioButtonList>   <asp:Button ID="KeyChooser" runat="server" Text="Выбрать способ" OnClick="KeyChooser_Click" CssClass="button" Height="39px" Width="100px" />
             <br>
             <br>
             
             <asp:TextBox ID="Key" runat="server" Height="16px" Width="50%">Введите ключ</asp:TextBox>
             <br>
             <br>
-            <asp:FileUpload ID="KeyUpload" runat="server"/>&nbsp;&nbsp;&nbsp;<asp:Button ID="DownloadKey" runat="server" Text="Загрузить файл" CssClass="button" Height="54px"/>
-            <br>
+            <asp:FileUpload ID="KeyUpload" runat="server"/>&nbsp;&nbsp;&nbsp;<br>
 
         </div>
          <br>

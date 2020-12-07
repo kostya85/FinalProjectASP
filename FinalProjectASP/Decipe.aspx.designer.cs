@@ -60,15 +60,6 @@ namespace FinalProjectASP
         protected global::System.Web.UI.WebControls.FileUpload FileUpload;
 
         /// <summary>
-        /// Download элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Download;
-
-        /// <summary>
         /// FileError элемент управления.
         /// </summary>
         /// <remarks>
@@ -112,15 +103,6 @@ namespace FinalProjectASP
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload KeyUpload;
-
-        /// <summary>
-        /// DownloadKey элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DownloadKey;
 
         /// <summary>
         /// Button2 элемент управления.
