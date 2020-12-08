@@ -34,6 +34,7 @@ namespace FinalProjectASP
 
         protected void Deciper_Click(object sender, EventArgs e)
         {
+            DecipeText.Text = "";
             bool Text = false;
             bool HasKey = false;
             string source = null;
@@ -67,7 +68,7 @@ namespace FinalProjectASP
                         if (extension == ".docx") source = ParseWord(path + FileUpload.FileName);
                         else
                         {
-                            source = File.ReadAllText(path + FileUpload.FileName, Encoding.UTF8);
+                            source = GetTXTData(path + FileUpload.FileName);
                         }
                         if (string.IsNullOrEmpty(source))
                         {
@@ -75,7 +76,7 @@ namespace FinalProjectASP
                         }
                         else
                         {
-                            source = GetTXTData(path + FileUpload.FileName);
+                            
                             data.EnciperData = source;
                             Text = true;
                         }
@@ -121,7 +122,7 @@ namespace FinalProjectASP
                         if (extension == ".docx") keytext = ParseWord(path + KeyUpload.FileName);
                         else
                         {
-                            keytext = File.ReadAllText(path + KeyUpload.FileName, Encoding.UTF8);
+                            keytext = GetTXTData(path + KeyUpload.FileName);
                         }
                         if (string.IsNullOrEmpty(keytext))
                         {
@@ -129,7 +130,7 @@ namespace FinalProjectASP
                         }
                         else
                         {
-                            keytext = GetTXTData(path + KeyUpload.FileName);
+                            
                             data.Key = keytext;
                             HasKey = true;
                            
@@ -175,94 +176,14 @@ namespace FinalProjectASP
         }
         string ParseWord(string path)
         {
-            object FileName = path;
-            object rOnly = true;
-            object SaveChanges = false;
-            object MissingObj = System.Reflection.Missing.Value;
 
-            Word.Application app = new Word.Application();
-            Word.Document doc = null;
-            Word.Range range = null;
-            try
+            DocX doc = DocX.Load(path);
+            string s = "";
+            foreach (var e in doc.Paragraphs)
             {
-                doc = app.Documents.Open(ref FileName, ref MissingObj, ref rOnly, ref MissingObj,
-                ref MissingObj, ref MissingObj, ref MissingObj, ref MissingObj,
-                ref MissingObj, ref MissingObj, ref MissingObj, ref MissingObj,
-                ref MissingObj, ref MissingObj, ref MissingObj, ref MissingObj);
-
-                object StartPosition = 0;
-                object EndPositiojn = doc.Characters.Count;
-                range = doc.Range(ref StartPosition, ref EndPositiojn);
-
-                // Получение основного текста со страниц (без учёта сносок и колонтитулов)
-                string MainText = (range == null || range.Text == null) ? null : range.Text;
-                if (MainText != null)
-                {
-                    /* Обработка основного текста документа*/
-                    return MainText;
-                }
-                return null;
-                // Получение текста из нижних и верхних колонтитулов
-                //foreach (Word.Section section in doc.Sections)
-                //{
-                //    // Нижние колонтитулы
-                //    foreach (Word.HeaderFooter footer in section.Footers)
-                //    {
-                //        string FooterText = (footer.Range == null || footer.Range.Text == null) ? null : footer.Range.Text;
-                //        if (FooterText != null)
-                //        {
-                //            /* Обработка текста */
-                //        }
-                //    }
-
-                    // Верхние колонтитулы
-                    //foreach (Word.HeaderFooter header in section.Headers)
-                    //{
-                    //    string HeaderText = (header.Range == null || header.Range.Text == null) ? null : header.Range.Text;
-                    //    if (HeaderText != null)
-                    //    {
-                    //        /* Обработка текста */
-                    //    }
-                    //}
-                //}
-                // Получение текста сносок
-                //if (doc.Footnotes.Count != 0)
-                //{
-                //    foreach (Word.Footnote footnote in doc.Footnotes)
-                //    {
-                //        string FooteNoteText = (footnote.Range == null || footnote.Range.Text == null) ? null : footnote.Range.Text;
-                //        if (FooteNoteText != null)
-                //        {
-                //            /* Обработка текста */
-                //        }
-                //    }
-                //}
+                s += e.Text + "\n";
             }
-            catch (Exception ex)
-            {
-                /* Обработка исключений */
-                return null;
-            }
-            finally
-            {
-                /* Очистка неуправляемых ресурсов */
-                if (doc != null)
-                {
-                    doc.Close(ref SaveChanges);
-                }
-                if (range != null)
-                {
-                    Marshal.ReleaseComObject(range);
-                    range = null;
-                }
-                if (app != null)
-                {
-                    app.Quit();
-                    Marshal.ReleaseComObject(app);
-                    app = null;
-                }
-                
-            }
+            return s;
         }
 
         protected void SaveTXT_Click(object sender, EventArgs e)

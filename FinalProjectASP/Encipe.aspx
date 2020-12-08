@@ -57,7 +57,7 @@
             <asp:Label ID="KeyError" runat="server" Text=""></asp:Label>
         </div>
          <br>
-    <asp:Button ID="DecipeFinal" runat="server" Text="Расшифровать" CssClass="button" Height="53px" Width="154px" OnClick="Deciper_Click"/>
+    <asp:Button ID="DecipeFinal" runat="server" Text="Зашифровать" CssClass="button" Height="53px" Width="154px" OnClick="Deciper_Click"/>
     <br><br><br>
     <asp:TextBox ID="DecipeText" runat="server" Width="100%" Height="200px" TextMode="MultiLine">Здесь будет выведено зашифрованное сообщение</asp:TextBox>
     <br><br>
@@ -66,6 +66,7 @@
     
         
     
-   
+   <br>
+    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
 </body>
 </html>
