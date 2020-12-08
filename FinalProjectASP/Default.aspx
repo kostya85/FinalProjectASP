@@ -10,16 +10,19 @@
 </head>
 <body >
     <form id="form1" runat="server">
-        
+        <h1 align="center">CryptoPRO CSP min. version</h1>
             <p align="center">
-            <asp:Button ID="Button1" runat="server" Height="74px" Text="Расшифровать" Width="157px" CssClass="button" OnClick="Button1_Click"/>
+            <asp:Button ID="Button1" runat="server" Height="190px" Text="Расшифровать" Width="250px" CssClass="button" OnClick="Button1_Click" Font-Size="Large"/>
                 </p>
         
         <p align="center">
-            <asp:Button ID="Button2" runat="server" Height="63px" Text="Зашифровать" Width="157px" CssClass="button" OnClick="Button2_Click"/>
+            <asp:Button ID="Button2" runat="server" Height="190px" Text="Зашифровать" Width="250px" CssClass="button" OnClick="Button2_Click" Font-Size="Large"/>
         </p>
         <p align="center">
-        <asp:Button ID="Button3" runat="server" Height="58px" Text="О разработчике" Width="157px" CssClass="button" OnClick="Button3_Click" />
+        <asp:Button ID="Button4" runat="server" Height="190px" Text="О сервисе" Width="250px" CssClass="button" OnClick="Button4_Click"  Font-Size="Large"/>
+            </p>
+        <p align="center">
+        <asp:Button ID="Button3" runat="server" Height="190px" Text="О разработчике" Width="250px" CssClass="button" OnClick="Button3_Click"  Font-Size="Large"/>
             </p>
     </form>
 </body>

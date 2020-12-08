@@ -29,5 +29,9 @@ namespace FinalProjectASP
         {
             Response.Redirect("Encipe.aspx");
         }
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Readme.aspx");
+        }
     }
 }
