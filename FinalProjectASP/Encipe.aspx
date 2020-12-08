@@ -5,12 +5,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Расшифровать</title>
+    <title>Зашифровать</title>
     <link rel="stylesheet" href="Styles.css"/>
 </head>
 <body>
     <h1 align="center">Зашифровка сообщения</h1>
-    <a href="Default.aspx">Главная</a>-><a href="Decipe.aspx">Зашифровка</a>
+    <a href="Default.aspx">Главная</a>-><a href="Encipe.aspx">Зашифровка</a>
     <h2 align="center">На данной странице Вы сможете зашифровать сообщения с помощью шифра Вижинера</h2>
     <h3>Пожалуйста, введите недостающие данные</h3>
     <form id="form1" runat="server">
@@ -67,6 +67,6 @@
         
     
    <br>
-    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+    <a href="#" title="Вернуться наверх" class="buttonup"><img src="Img/buttonUp.png" id="up"></a>
 </body>
 </html>

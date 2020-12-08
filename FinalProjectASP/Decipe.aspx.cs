@@ -65,10 +65,10 @@ namespace FinalProjectASP
                         if (File.Exists(path + FileUpload.FileName)) File.Delete(path + FileUpload.FileName);
                         FileUpload.SaveAs(path + FileUpload.FileName);
                         
-                        if (extension == ".docx") source = ParseWord(path + FileUpload.FileName);
+                        if (extension == ".docx") source = WorkWithText.ParseWord(path + FileUpload.FileName);
                         else
                         {
-                            source = GetTXTData(path + FileUpload.FileName);
+                            source = WorkWithText.GetTXTData(path + FileUpload.FileName);
                         }
                         if (string.IsNullOrEmpty(source))
                         {
@@ -119,10 +119,10 @@ namespace FinalProjectASP
                         if (File.Exists(path + KeyUpload.FileName)) File.Delete(path + KeyUpload.FileName);
                         KeyUpload.SaveAs(path + KeyUpload.FileName);
 
-                        if (extension == ".docx") keytext = ParseWord(path + KeyUpload.FileName);
+                        if (extension == ".docx") keytext = WorkWithText.ParseWord(path + KeyUpload.FileName);
                         else
                         {
-                            keytext = GetTXTData(path + KeyUpload.FileName);
+                            keytext = WorkWithText.GetTXTData(path + KeyUpload.FileName);
                         }
                         if (string.IsNullOrEmpty(keytext))
                         {
@@ -174,17 +174,7 @@ namespace FinalProjectASP
             }
             
         }
-        string ParseWord(string path)
-        {
-
-            DocX doc = DocX.Load(path);
-            string s = "";
-            foreach (var e in doc.Paragraphs)
-            {
-                s += e.Text + "\n";
-            }
-            return s;
-        }
+        
 
         protected void SaveTXT_Click(object sender, EventArgs e)
         {
@@ -231,24 +221,6 @@ namespace FinalProjectASP
 
             }
         }
-        string GetTXTData(string filename)
-        {
-            string result = File.ReadAllText(filename);
-            foreach (var e in result)
-            {
-                if ((int)e == 65533)
-                {
-                    StreamReader reader = new StreamReader(filename, Encoding.GetEncoding(1251));
-                    string str = reader.ReadToEnd();
-                    reader.Dispose();
-                    StreamWriter writer = new StreamWriter(filename, false, Encoding.UTF8);
-                    writer.Write(str);                    
-                    writer.Dispose();
-                    break;
-                    
-                }
-            }
-            return File.ReadAllText(filename);
-        }
+        
     }
 }

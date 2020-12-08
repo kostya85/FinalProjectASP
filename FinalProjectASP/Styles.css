@@ -155,3 +155,16 @@ ul {
     color:red;
     font-size:14;
 }
+p {
+    color: #333;
+    font-family: ‘Muli’, sans-serif;
+    margin-bottom: 15px;
+    font-size:20px;
+}
+#up {
+    width: 88px;
+    height: 83px;
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+}

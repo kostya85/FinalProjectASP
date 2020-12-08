@@ -77,6 +77,7 @@
     <Content Include="Decipe.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Encipe.aspx" />
+    <Content Include="Img\buttonUp.png" />
     <Content Include="Img\kostya.jpg" />
     <Content Include="Readme.aspx" />
     <Content Include="Styles.css" />
@@ -121,6 +122,7 @@
     <Compile Include="Readme.aspx.designer.cs">
       <DependentUpon>Readme.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WorkWithText.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
