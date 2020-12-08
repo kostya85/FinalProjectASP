@@ -76,6 +76,7 @@
     <Content Include="About.aspx" />
     <Content Include="Decipe.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Encipe.aspx" />
     <Content Include="Img\kostya.jpg" />
     <Content Include="Readme.aspx" />
     <Content Include="Styles.css" />
@@ -105,6 +106,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Encipe.aspx.cs">
+      <DependentUpon>Encipe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Encipe.aspx.designer.cs">
+      <DependentUpon>Encipe.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Readme.aspx.cs">
       <DependentUpon>Readme.aspx</DependentUpon>
@@ -125,7 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Deciper\Program\" />
-    <Folder Include="Enciper\" />
+    <Folder Include="Enciper\Program\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

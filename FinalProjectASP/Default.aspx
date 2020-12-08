@@ -16,7 +16,7 @@
                 </p>
         
         <p align="center">
-            <asp:Button ID="Button2" runat="server" Height="63px" Text="Зашифровать" Width="157px" CssClass="button"/>
+            <asp:Button ID="Button2" runat="server" Height="63px" Text="Зашифровать" Width="157px" CssClass="button" OnClick="Button2_Click"/>
         </p>
         <p align="center">
         <asp:Button ID="Button3" runat="server" Height="58px" Text="О разработчике" Width="157px" CssClass="button" OnClick="Button3_Click" />

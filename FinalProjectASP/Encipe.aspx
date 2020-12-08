@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Decipe.aspx.cs" Inherits="FinalProjectASP.Decipe" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Encipe.aspx.cs" Inherits="FinalProjectASP.Encipe" %>
 
 <!DOCTYPE html>
 
@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="Styles.css"/>
 </head>
 <body>
-    <h1 align="center">Расшифровка сообщения</h1>
-    <a href="Default.aspx">Главная</a>-><a href="Decipe.aspx">Расшифровка</a>
-    <h2 align="center">На данной странице Вы сможете расшифровать сообщения с помощью шифра Вижинера</h2>
+    <h1 align="center">Зашифровка сообщения</h1>
+    <a href="Default.aspx">Главная</a>-><a href="Decipe.aspx">Зашифровка</a>
+    <h2 align="center">На данной странице Вы сможете зашифровать сообщения с помощью шифра Вижинера</h2>
     <h3>Пожалуйста, введите недостающие данные</h3>
     <form id="form1" runat="server">
         <div>
@@ -59,7 +59,7 @@
          <br>
     <asp:Button ID="DecipeFinal" runat="server" Text="Расшифровать" CssClass="button" Height="53px" Width="154px" OnClick="Deciper_Click"/>
     <br><br><br>
-    <asp:TextBox ID="DecipeText" runat="server" Width="100%" Height="200px" TextMode="MultiLine">Здесь будет выведено расшифрованное сообщение</asp:TextBox>
+    <asp:TextBox ID="DecipeText" runat="server" Width="100%" Height="200px" TextMode="MultiLine">Здесь будет выведено зашифрованное сообщение</asp:TextBox>
     <br><br>
     <asp:Button ID="SaveTXT" runat="server" Text="Сохранить txt" CssClass="button1" OnClick="SaveTXT_Click" Visible="false" Enabled="false" />&nbsp;&nbsp;&nbsp;<asp:Button ID="SaveDOCX" runat="server" Text="Сохранить docx" CssClass="button1" Visible="false" Enabled="false" OnClick="SaveDOCX_Click"/>
     </form>

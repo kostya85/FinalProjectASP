@@ -11,26 +11,26 @@ using Word = Microsoft.Office.Interop.Word;
 using Xceed.Words.NET;
 namespace FinalProjectASP
 {
-    
-    public partial class Decipe : System.Web.UI.Page
+
+    public partial class Encipe : System.Web.UI.Page
     {
-       
-        
+
+
         static Data data = new Data();
-        
-            protected void Page_Load(object sender, EventArgs e)
+
+        protected void Page_Load(object sender, EventArgs e)
         {
 
-            
-            
+
+
         }
 
-        
 
-       
 
-       
-        
+
+
+
+
 
         protected void Deciper_Click(object sender, EventArgs e)
         {
@@ -60,10 +60,10 @@ namespace FinalProjectASP
                     if (extension == ".txt" || extension == ".docx")
                     {
                         FileError.Text = "";
-                        string path = Server.MapPath("Deciper\\");
+                        string path = Server.MapPath("Enciper\\");
                         if (File.Exists(path + FileUpload.FileName)) File.Delete(path + FileUpload.FileName);
                         FileUpload.SaveAs(path + FileUpload.FileName);
-                        
+
                         if (extension == ".docx") source = ParseWord(path + FileUpload.FileName);
                         else
                         {
@@ -114,7 +114,7 @@ namespace FinalProjectASP
                     if (extension == ".txt" || extension == ".docx")
                     {
                         KeyError.Text = "";
-                        string path = Server.MapPath("Deciper\\");
+                        string path = Server.MapPath("Enciper\\");
                         if (File.Exists(path + KeyUpload.FileName)) File.Delete(path + KeyUpload.FileName);
                         KeyUpload.SaveAs(path + KeyUpload.FileName);
 
@@ -132,7 +132,7 @@ namespace FinalProjectASP
                             keytext = GetTXTData(path + KeyUpload.FileName);
                             data.Key = keytext;
                             HasKey = true;
-                           
+
                         }
                         if (File.Exists(path + KeyUpload.FileName)) File.Delete(path + KeyUpload.FileName);
                     }
@@ -149,7 +149,7 @@ namespace FinalProjectASP
 
             if (Text && HasKey)
             {
-                data.DeciperData= Crypto.Decrypt(source, keytext);
+                data.DeciperData = Crypto.Encrypt(source, keytext);
                 if (data.DeciperData != null)
                 {
                     DecipeText.Text = data.DeciperData;
@@ -171,7 +171,7 @@ namespace FinalProjectASP
                     SaveTXT.Visible = false;
                 }
             }
-            
+
         }
         string ParseWord(string path)
         {
@@ -215,15 +215,15 @@ namespace FinalProjectASP
                 //        }
                 //    }
 
-                    // Верхние колонтитулы
-                    //foreach (Word.HeaderFooter header in section.Headers)
-                    //{
-                    //    string HeaderText = (header.Range == null || header.Range.Text == null) ? null : header.Range.Text;
-                    //    if (HeaderText != null)
-                    //    {
-                    //        /* Обработка текста */
-                    //    }
-                    //}
+                // Верхние колонтитулы
+                //foreach (Word.HeaderFooter header in section.Headers)
+                //{
+                //    string HeaderText = (header.Range == null || header.Range.Text == null) ? null : header.Range.Text;
+                //    if (HeaderText != null)
+                //    {
+                //        /* Обработка текста */
+                //    }
+                //}
                 //}
                 // Получение текста сносок
                 //if (doc.Footnotes.Count != 0)
@@ -261,7 +261,7 @@ namespace FinalProjectASP
                     Marshal.ReleaseComObject(app);
                     app = null;
                 }
-                
+
             }
         }
 
@@ -271,9 +271,9 @@ namespace FinalProjectASP
             {
                 if (data.DeciperData != default && data.EnciperData != default && data.Key != default)
                 {
-                    string path = Server.MapPath("Deciper\\Program\\");
-                    File.WriteAllText(path+"AppData.txt", data.DeciperData, Encoding.UTF8);
-                    Response.Redirect(@"/Deciper/Program/" + "AppData.txt");
+                    string path = Server.MapPath("Enciper\\Program\\");
+                    File.WriteAllText(path + "AppData.txt", data.DeciperData, Encoding.UTF8);
+                    Response.Redirect(@"/Enciper/Program/" + "AppData.txt");
                 }
             }
             finally
@@ -286,13 +286,13 @@ namespace FinalProjectASP
         {
             try
             {
-                if (File.Exists(Server.MapPath("Deciper\\Program\\") + "AppDataDocx.docx")) File.Delete(Server.MapPath("Deciper\\Program\\") + "AppDataDocx.docx");
-                string pathDocument = Server.MapPath("Deciper\\Program\\") + "AppDataDocx.docx";
+                if (File.Exists(Server.MapPath("Enciper\\Program\\") + "AppDataDocx.docx")) File.Delete(Server.MapPath("Enciper\\Program\\") + "AppDataDocx.docx");
+                string pathDocument = Server.MapPath("Enciper\\Program\\") + "AppDataDocx.docx";
 
                 // создаём документ
                 DocX document = DocX.Create(pathDocument);
 
-                
+
 
                 // вставляем параграф и передаём текст
                 document.InsertParagraph(data.DeciperData).
@@ -303,7 +303,7 @@ namespace FinalProjectASP
 
                 // сохраняем документ
                 document.Save();
-                Response.Redirect(@"/Deciper/Program/" + "AppDataDocx.docx");
+                Response.Redirect(@"/Enciper/Program/" + "AppDataDocx.docx");
             }
             finally
             {
@@ -321,10 +321,10 @@ namespace FinalProjectASP
                     string str = reader.ReadToEnd();
                     reader.Dispose();
                     StreamWriter writer = new StreamWriter(filename, false, Encoding.UTF8);
-                    writer.Write(str);                    
+                    writer.Write(str);
                     writer.Dispose();
                     break;
-                    
+
                 }
             }
             return File.ReadAllText(filename);

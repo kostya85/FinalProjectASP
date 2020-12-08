@@ -24,5 +24,10 @@ namespace FinalProjectASP
         {
             Response.Redirect("About.aspx");
         }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Encipe.aspx");
+        }
     }
 }

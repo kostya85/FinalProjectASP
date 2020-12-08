@@ -33,8 +33,18 @@ namespace FinalProjectASP
 
         public static string Vigenere(string text, string password, bool encrypting = true)
         {
+            if (password.Length > text.Length||text.Length==0||password.Length==0)
+            {
+                return null;
+            }
+            var prov = password.ToUpper();
+            foreach(var e in prov)
+            {
+                if (!letters.Contains(e)) return null;
+            }
             var gamma = GetRepeatKey(password, text);
             gamma = gamma.ToUpper();
+            var register = text;
             text = text.ToUpper();
             var retValue = "";
             var q = letters.Length;
@@ -46,11 +56,12 @@ namespace FinalProjectASP
                 if (letterIndex < 0)
                 {
                     //если буква не найдена, добавляем её в исходном виде
-                    retValue += text[i].ToString();
+                    retValue += register[i].ToString();
                 }
                 else
                 {
-                    retValue += letters[(q+ letterIndex + ((encrypting ? 1 : -1) * codeIndex)) % q].ToString();
+                    if(char.IsLower(register[i])) retValue += char.ToLower(letters[(q + letterIndex + ((encrypting ? 1 : -1) * codeIndex)) % q]).ToString();
+                    else retValue += letters[(q+ letterIndex + ((encrypting ? 1 : -1) * codeIndex)) % q].ToString();
                 }
             }
 
