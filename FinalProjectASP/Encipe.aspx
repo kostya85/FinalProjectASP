@@ -15,13 +15,20 @@
     <h3>Пожалуйста, введите недостающие данные</h3>
     <form id="form1" runat="server">
         <div>
-            <h4>Шаг 1 - Исходный текст</h4>
              <asp:RadioButtonList ID="DeciperFileMode" runat="server" 
             RepeatDirection="Horizontal" RepeatLayout="Table" OnSelectedIndexChanged="DeciperFileMode_SelectedIndexChanged" AutoPostBack="true">
             <asp:ListItem Text="Введу исходный текст сам" Value="Input" Selected="True"></asp:ListItem>
                 
             <asp:ListItem Text="Выберу файл для загрузки" Value="Download"></asp:ListItem>            
         </asp:RadioButtonList>   
+            <br>
+            <asp:RadioButtonList ID="DeciperKeyMode" runat="server" 
+            RepeatDirection="Horizontal" RepeatLayout="Table" AutoPostBack="true" OnSelectedIndexChanged="DeciperKeyMode_SelectedIndexChanged">
+            <asp:ListItem Text="Введу ключ сам" Value="Input" Selected="True"></asp:ListItem>
+                
+            <asp:ListItem Text="Выберу файл для загрузки" Value="Download"></asp:ListItem>            
+        </asp:RadioButtonList>   
+            <h4>Шаг 1 - Исходный текст</h4>
             <br>
             <br>
             <asp:TextBox ID="SourceText" runat="server" Height="200px" Width="100%" TextMode="MultiLine" CssClass="text">Введите исходный текст</asp:TextBox>
@@ -41,12 +48,6 @@
   <li>Ключ не чувствителен к регистру (КЛЮЧ=ключ)</li>
   
 </ul>
-            <asp:RadioButtonList ID="DeciperKeyMode" runat="server" 
-            RepeatDirection="Horizontal" RepeatLayout="Table" AutoPostBack="true" OnSelectedIndexChanged="DeciperKeyMode_SelectedIndexChanged">
-            <asp:ListItem Text="Введу ключ сам" Value="Input" Selected="True"></asp:ListItem>
-                
-            <asp:ListItem Text="Выберу файл для загрузки" Value="Download"></asp:ListItem>            
-        </asp:RadioButtonList>   
             <br>
             <br>
             
