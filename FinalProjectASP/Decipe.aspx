@@ -11,23 +11,23 @@
 <body>
     <h1 align="center">Расшифровка сообщения</h1>
     <a href="Default.aspx">Главная</a>-><a href="Decipe.aspx">Расшифровка</a>
-    <h2 align="center">На данной странице Вы сможете расшифровать сообщения с помощью шифра Вижинера</h2>
+    
     <h3>Пожалуйста, введите недостающие данные</h3>
     <form id="form1" runat="server">
         <div>
             <h4>Шаг 1 - Исходный текст</h4>
              <asp:RadioButtonList ID="DeciperFileMode" runat="server" 
-            RepeatDirection="Horizontal" RepeatLayout="Table">
-            <asp:ListItem Text="Введу исходный текст сам" Value="Input" Selected="True"></asp:ListItem>
+            RepeatDirection="Horizontal" RepeatLayout="Table" AutoPostBack="true" OnSelectedIndexChanged="DeciperFileMode_SelectedIndexChanged">
+            <asp:ListItem Text="Ввести исходный текст вручную" Value="Input" Selected="True" ></asp:ListItem>
                 
-            <asp:ListItem Text="Выберу файл для загрузки" Value="Download"></asp:ListItem>            
+            <asp:ListItem Text="Выбрать файл для загрузки" Value="Download"></asp:ListItem>            
         </asp:RadioButtonList>   
             <br>
             <br>
-            <asp:TextBox ID="SourceText" runat="server" Height="200px" Width="100%" TextMode="MultiLine">Введите исходный текст</asp:TextBox>
+            <asp:TextBox ID="SourceText" runat="server" Height="200px" Width="100%" TextMode="MultiLine" CssClass="text">Введите исходный текст</asp:TextBox>
             <br>
             <br>
-            <asp:FileUpload ID="FileUpload" runat="server"/>&nbsp;&nbsp;&nbsp;<br>
+            <asp:FileUpload ID="FileUpload" runat="server" Visible="false" Enabled="false"/>&nbsp;&nbsp;&nbsp;<br>
             <asp:Label ID="FileError" runat="server" Text=""></asp:Label>
             <br><br>
         </div>
@@ -42,24 +42,24 @@
   
 </ul>
             <asp:RadioButtonList ID="DeciperKeyMode" runat="server" 
-            RepeatDirection="Horizontal" RepeatLayout="Table">
-            <asp:ListItem Text="Введу ключ сам" Value="Input" Selected="True"></asp:ListItem>
+            RepeatDirection="Horizontal" RepeatLayout="Table" OnSelectedIndexChanged="DeciperKeyMode_SelectedIndexChanged" AutoPostBack="true">
+            <asp:ListItem Text="Ввести ключ вручную" Value="Input" Selected="True"></asp:ListItem>
                 
-            <asp:ListItem Text="Выберу файл для загрузки" Value="Download"></asp:ListItem>            
+            <asp:ListItem Text="Выбрать файл для загрузки" Value="Download"></asp:ListItem>            
         </asp:RadioButtonList>   
             <br>
             <br>
             
-            <asp:TextBox ID="Key" runat="server" Height="16px" Width="50%">Введите ключ</asp:TextBox>
+            <asp:TextBox ID="Key" runat="server" Height="16px" Width="50%" CssClass="text">Введите ключ</asp:TextBox>
             <br>
             <br>
-            <asp:FileUpload ID="KeyUpload" runat="server"/>&nbsp;&nbsp;&nbsp;<br>
+            <asp:FileUpload ID="KeyUpload" runat="server" Visible="false" Enabled="false" />&nbsp;&nbsp;&nbsp;<br>
             <asp:Label ID="KeyError" runat="server" Text=""></asp:Label>
         </div>
          <br>
     <asp:Button ID="DecipeFinal" runat="server" Text="Расшифровать" CssClass="button" Height="53px" Width="154px" OnClick="Deciper_Click"/>
     <br><br><br>
-    <asp:TextBox ID="DecipeText" runat="server" Width="100%" Height="200px" TextMode="MultiLine">Здесь будет выведено расшифрованное сообщение</asp:TextBox>
+    <asp:TextBox ID="DecipeText" runat="server" Width="100%" Height="200px" TextMode="MultiLine" CssClass="text">Здесь будет выведено расшифрованное сообщение</asp:TextBox>
     <br><br>
     <asp:Button ID="SaveTXT" runat="server" Text="Сохранить txt" CssClass="button1" OnClick="SaveTXT_Click" Visible="false" Enabled="false" />&nbsp;&nbsp;&nbsp;<asp:Button ID="SaveDOCX" runat="server" Text="Сохранить docx" CssClass="button1" Visible="false" Enabled="false" OnClick="SaveDOCX_Click"/>
     </form>

@@ -18,8 +18,12 @@ namespace FinalProjectASP
             string s = "";
             foreach (var e in doc.Paragraphs)
             {
-                s += e.Text + "\n";
-            }           
+                if (e.Text.Length != 0) { 
+                    
+                    s += e.Text + "\n"; 
+                }
+            }
+            if (doc != null) doc.Dispose();
             return s;
 
 

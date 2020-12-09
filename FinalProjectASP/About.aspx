@@ -13,10 +13,10 @@
         <div>
             <h1 align="center">Информация о разработчике</h1>
     <a href="Default.aspx">Главная</a>-><a href="About.aspx">О разработчике</a>
-    <h2 align="center">На данной странице Вы найдете информацию о разработчике данной системы</h2>
+  
     <h3 align="center">Константин Горбунов</h3>
              <p align="center">
-            <asp:Image ID="Image1" runat="server" ImageUrl="Img/kostya.jpg" Width="300px" CssClass="pic"/>
+            Контактные данные
                  </p>
             <h4 align="center">gorbunov.kostya@bk.ru</h4>
             <p align="center">

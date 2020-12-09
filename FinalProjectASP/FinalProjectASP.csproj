@@ -81,6 +81,9 @@
     <Content Include="Img\kostya.jpg" />
     <Content Include="Readme.aspx" />
     <Content Include="Styles.css" />
+    <Content Include="Test\exitfile.txt" />
+    <Content Include="Test\key.txt" />
+    <Content Include="Test\Result_v5.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +129,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Test\Result_v5.docx" />
+    <Content Include="Test\AppDataDocx.docx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

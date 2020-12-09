@@ -50,6 +50,7 @@ namespace FinalProjectASP
                 else
                 {
                     FileError.Text = "Вы не ввели текст!";
+                    DataError();
                 }
 
             }
@@ -73,6 +74,7 @@ namespace FinalProjectASP
                         if (string.IsNullOrEmpty(source))
                         {
                             FileError.Text = "Длина выбранного файла = 0!";
+                            DataError();
                         }
                         else
                         {
@@ -85,11 +87,13 @@ namespace FinalProjectASP
                     else
                     {
                         FileError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
+                        DataError();
                     }
                 }
                 else
                 {
                     FileError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
+                    DataError();
                 }
             }
 
@@ -104,6 +108,7 @@ namespace FinalProjectASP
                 else
                 {
                     KeyError.Text = "Вы не ввели текст!";
+                    DataError();
                 }
 
             }
@@ -127,6 +132,7 @@ namespace FinalProjectASP
                         if (string.IsNullOrEmpty(keytext))
                         {
                             KeyError.Text = "Длина выбранного файла = 0!";
+                            DataError();
                         }
                         else
                         {
@@ -140,11 +146,13 @@ namespace FinalProjectASP
                     else
                     {
                         KeyError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
+                        DataError();
                     }
                 }
                 else
                 {
                     KeyError.Text = "Пожалуйста, выберите файл с расширением .txt или .docx!";
+                    DataError();
                 }
             }
 
@@ -161,15 +169,7 @@ namespace FinalProjectASP
                 }
                 else
                 {
-                    DecipeText.Text = $"К сожалению возникла ошибка. Проверьте все ли условия Вы выполнили!\n" +
-                        $"Возможно:\n" +
-                        $"1. Длина ключа или сообщения равна 0\n" +
-                        $"2. Длина ключа больше длины сообщения\n" +
-                        $"3. В ключе содержаться символы, не входящие в состав русского алфавита";
-                    SaveDOCX.Visible = false;
-                    SaveDOCX.Enabled = false;
-                    SaveTXT.Enabled = false;
-                    SaveTXT.Visible = false;
+                    DataError();
                 }
             }
 
@@ -221,6 +221,53 @@ namespace FinalProjectASP
 
             }
         }
-        
+
+        protected void DeciperFileMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DeciperFileMode.SelectedIndex == 0)
+            {
+                SourceText.Visible = true;
+                SourceText.ReadOnly = false;
+                FileUpload.Visible = false;
+                FileUpload.Enabled = false;
+            }
+            else
+            {
+                SourceText.Visible = false;
+                SourceText.ReadOnly = true;
+                FileUpload.Visible = true;
+                FileUpload.Enabled = true;
+            }
+        }
+
+        protected void DeciperKeyMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DeciperKeyMode.SelectedIndex == 0)
+            {
+                Key.Visible = true;
+                Key.ReadOnly = false;
+                KeyUpload.Visible = false;
+                KeyUpload.Enabled = false;
+            }
+            else
+            {
+                Key.Visible = false;
+                Key.ReadOnly = true;
+                KeyUpload.Visible = true;
+                KeyUpload.Enabled = true;
+            }
+        }
+        public void DataError()
+        {
+            DecipeText.Text = $"К сожалению возникла ошибка. Проверьте все ли условия Вы выполнили!\n" +
+                       $"Возможно:\n" +
+                       $"1. Длина ключа или сообщения равна 0\n" +
+                       $"2. Длина ключа больше длины сообщения\n" +
+                       $"3. В ключе содержаться символы, не входящие в состав русского алфавита";
+            SaveDOCX.Visible = false;
+            SaveDOCX.Enabled = false;
+            SaveTXT.Enabled = false;
+            SaveTXT.Visible = false;
+        }
     }
 }
