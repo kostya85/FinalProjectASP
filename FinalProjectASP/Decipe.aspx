@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="Styles.css"/>
 </head>
 <body>
+    
     <h1 align="center">Расшифровка сообщения</h1>
-    <a href="Default.aspx">Главная</a>-><a href="Decipe.aspx">Расшифровка</a>
+    <a href="Default.aspx" class="s">Главная</a>-><a href="Decipe.aspx" class="s">Расшифровка</a>
     
     <h3>Пожалуйста, введите недостающие данные</h3>
     <form id="form1" runat="server">
@@ -50,7 +51,7 @@
             <br>
             <br>
             
-            <asp:TextBox ID="Key" runat="server" Height="16px" Width="50%" CssClass="text">Введите ключ</asp:TextBox>
+            <asp:TextBox ID="Key" runat="server" Height="24px" Width="50%" CssClass="text">Введите ключ</asp:TextBox>
             <br>
             <br>
             <asp:FileUpload ID="KeyUpload" runat="server" Visible="false" Enabled="false" />&nbsp;&nbsp;&nbsp;<br>
@@ -61,7 +62,7 @@
     <br><br><br>
     <asp:TextBox ID="DecipeText" runat="server" Width="100%" Height="200px" TextMode="MultiLine" CssClass="text">Здесь будет выведено расшифрованное сообщение</asp:TextBox>
     <br><br>
-    <asp:Button ID="SaveTXT" runat="server" Text="Сохранить txt" CssClass="button1" OnClick="SaveTXT_Click" Visible="false" Enabled="false" />&nbsp;&nbsp;&nbsp;<asp:Button ID="SaveDOCX" runat="server" Text="Сохранить docx" CssClass="button1" Visible="false" Enabled="false" OnClick="SaveDOCX_Click"/>
+    <asp:Button ID="SaveTXT" runat="server" Text="Сохранить txt" CssClass="button" OnClick="SaveTXT_Click" Visible="false" Enabled="false" Height="50px" />&nbsp;&nbsp;&nbsp;<asp:Button ID="SaveDOCX" runat="server" Text="Сохранить docx" CssClass="button" Visible="false" Enabled="false" OnClick="SaveDOCX_Click" Height="50px"/>
     </form>
     
         

@@ -12,7 +12,7 @@
     <form id="form1" runat="server">
         <div>
             <h1 align="center">Информация о разработчике</h1>
-    <a href="Default.aspx">Главная</a>-><a href="About.aspx">О разработчике</a>
+    <a href="Default.aspx" class="s">Главная</a>-><a href="About.aspx" class="s">О разработчике</a>
   
     <h3 align="center">Константин Горбунов</h3>
              <p align="center">
@@ -20,7 +20,7 @@
                  </p>
             <h4 align="center">gorbunov.kostya@bk.ru</h4>
             <p align="center">
-            <asp:Button ID="Button1" runat="server" Text="На главную" CssClass="button1" OnClick="Button1_Click"/>
+            <asp:Button ID="Button1" runat="server" Text="На главную" CssClass="button" OnClick="Button1_Click" Height="50px"/>
                 </p>
         </div>
     </form>

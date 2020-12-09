@@ -197,10 +197,10 @@ p {
     -ms-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    background: #EAE7E7;
+    background-color: white;
     border: 1px solid #C8C8C8;
     color: #777;
-    font: 13px Helvetica, Arial, sans-serif;
+    font: 18px Helvetica, Arial, sans-serif;
     margin: 0 0 10px;
     
     
@@ -212,9 +212,22 @@ p {
         -ms-box-shadow: 0 0 2px #ed1c24 inset;
         -o-box-shadow: 0 0 2px #ed1c24 inset;
         box-shadow: 0 0 2px #ED1C24 inset;
-        background-color: #FFF;
+        background-color: whitesmoke;
         border: 1px solid #ED1C24;
         
     }
 
- 
+.s {
+    background-image: linear-gradient(#FE5568 50%, #FE5568 50%), linear-gradient(silver 50%, silver 50%);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 0 2px, 100% 2px;
+    color: #1E3A52;
+    padding-bottom: 3px;
+    transition: .5s ease-in-out;
+}
+
+    .s:hover {
+        background-size: 100% 2px, 100% 2px;
+        color: #FE5568;
+    }
