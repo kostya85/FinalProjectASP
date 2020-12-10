@@ -15,12 +15,16 @@
     <h3>Пожалуйста, введите недостающие данные</h3>
     <form id="form1" runat="server">
         <div>
+            
              <asp:RadioButtonList ID="DeciperFileMode" runat="server" 
             RepeatDirection="Horizontal" RepeatLayout="Table" OnSelectedIndexChanged="DeciperFileMode_SelectedIndexChanged" AutoPostBack="true">
+                 
             <asp:ListItem Text="Введу исходный текст сам" Value="Input" Selected="True"></asp:ListItem>
                 
-            <asp:ListItem Text="Выберу файл для загрузки" Value="Download"></asp:ListItem>            
+            <asp:ListItem Text="Выберу файл для загрузки" Value="Download"></asp:ListItem>    
+                 
         </asp:RadioButtonList>   
+                
             <br>
             <asp:RadioButtonList ID="DeciperKeyMode" runat="server" 
             RepeatDirection="Horizontal" RepeatLayout="Table" AutoPostBack="true" OnSelectedIndexChanged="DeciperKeyMode_SelectedIndexChanged">
